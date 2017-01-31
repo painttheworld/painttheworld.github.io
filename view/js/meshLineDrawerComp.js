@@ -66,8 +66,6 @@ AFRAME.registerComponent('testing', {
       firebaseInit = true;
       console.log('Entered VR');
       var options = {
-        did: 300,
-        meme: 'fuckOff',
         meshLineMaker: this,
         editLink: edit
       }
