@@ -1,2 +1,2 @@
-# painttheworld.github.io
-Lets Your Pals Paint Your Virtual World
+# ptw
+Paint The World - Virtuleap WebVR Hackathon Submission

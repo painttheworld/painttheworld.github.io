@@ -1,14 +1,252 @@
 <html>
+
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+<script src="js/jquery-3.1.1.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blaise Marchetti</title>
-    <style type="text/css">body{margin:40px
-auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0
-10px}h1,h2,h3{line-height:1.2}</style>
+    <title>Paint the World</title>
+    <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+    <script>
+        console.log('yo my man');
+        // Initialize Firebase
+        // TODO: Replace with your project's customized code snippet
+        var config = {
+            apiKey: "AIzaSyBe5R-UlRrhLs1mlgTJ4X2NRXcP0dnv6_g",
+            authDomain: "mspaintvr.firebaseapp.com",
+            databaseURL: "https://mspaintvr.firebaseio.com",
+            storageBucket: "mspaintvr.appspot.com",
+            messagingSenderId: "940993919791",
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <meta name="description" content="Paint the World!">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js" type="text/javascript"></script>
+    <link href="css/spectrum.css" rel="stylesheet">
+    <link href="css/literallycanvas.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/9e19aba51c.js"></script>
+    <meta charset="UTF-8">
+
+    <style type="text/css">
+        nav {
+            box-shadow: 5px 4px 5px #000;
+        }
+        body {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: #4f5d6e;
+            position: relative;
+            background: rgb(26, 49, 95);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(26, 49, 95, 1)), color-stop(10%, rgba(26, 49, 95, 1)), color-stop(24%, rgba(29, 108, 141, 1)), color-stop(37%, rgba(41, 136, 151, 1)), color-stop(77%, rgba(39, 45, 100, 1)), color-stop(90%, rgba(26, 49, 95, 1)), color-stop(100%, rgba(26, 49, 95, 1)));
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#1a315f', endColorstr='#1a315f', GradientType=0);
+        }
+        #titleInput {
+            font-size: 5em;
+        }
+        #authorInput {
+            font-size: 2em;
+        }
+        input { 
+            text-align: center; 
+            background-color:rgba(0, 0, 0, 0);
+            color:white;
+            border: none;
+            outline:none;
+        }
+        .size1 {
+            font-size: 50%;
+            padding-bottom: 4px;
+        }
+        .size2 {
+            font-size: 75%;
+            padding-bottom: 4px;
+        }
+        .size3 {
+            font-size: 100%;
+            padding-bottom: 4px;
+        }
+        .size4 {
+            font-size: 125%;
+            padding-bottom: 4px;
+        }
+        .size5 {
+            font-size: 150%;
+            padding-bottom: 4px;
+        }
+        .col-centered {
+            float: none;
+            margin: 0 auto;
+        }
+        .panel {
+            margin: 30 auto;
+            height: 530px;
+        }
+        /*.btn {
+            border-radius: 0px;
+            background: #2d1e2f;
+        }    */
+        .btn #shareOptions {
+        }
+        img.logo{
+            width: 100%;
+            height: auto;
+        }
+        .sharePanel {
+            margin: 15px;
+            /*border: 0;*/
+            /*padding: 0;*/
+        }
+    </style>
 </head>
 
 <body>
-    <h1> PaintTheWorld </h1>
+    <div>
+        <div class="col-centered col-sm-11">
+
+            <!--Space between canvas and top of document. Required to seperate nav bar from canvas-->
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <!--Nav bar and branding-->
+            <nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0">
+                <div class="container-fluid">
+                    <!--<div class="nav navbar-nav" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><button type="button" id="slow" class="btn btn-primary btn-lg round">Test &nbsp <i class="fa fa-angle-right" aria-hidden="true"></i></button></li>
+                            <li><button type="button" id="medium" class="btn btn-primary btn-lg round">Test &nbsp <i class="fa fa-angle-double-right" aria-hidden="true"></i></button></li>
+                            <li><button type="button" id="fast" class="btn btn-primary btn-lg round">Test &nbsp <i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
+                        </ul>
+                    </div>-->
+                </div>
+            </nav>
+
+            <!--Just branding-->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid col-sm-13">
+                    <div class="navbar-header">
+                        <a class="navbar-brand">
+                            <i class="fa fa-paint-brush fa-2x fa-spin" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="col-sm-1 col-centered">
+                        <center><img src="logo.png" class="logo col-centered"></center>
+                        <center class="col-centered">Paint the World</center>
+                    </div>
+                </div>
+                <br>
+            </nav>
+     
+            <!-- Stores the literallycanvas canvas -->
+            <div class="row">
+                <div class="col-lg-12 col-centered" id="canvasArea">
+                    <div class="literally"></div>
+
+                    <button id="viewInVR" href="ptw/view/" class="btn btn-primary btn-lg btn-block">View in VR</button>
+                    <button data-toggle="collapse" data-target="#sharePanel" aria-expanded="false" aria-controls="sharePanel" id="shareOptions" class="btn btn-primary btn-lg btn-block">Share</button>
+                    <div class="panel-group row">
+                        <div class="collapse collapse-well" id="sharePanel">
+                            <div class="well sharePanel">
+                                <p>Link for your Friends to View: </p>
+                                <a id="viewLink">Sharing</a>
+                            </div>
+                            <div class="well sharePanel">
+                                <p>Link for your Friends to Edit: </p>
+                                <a id="editLink"></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- A whole mess of scripts, abandon hope all ye who enter here -->
+    <script src="js/literallycanvas.js"></script>
+    <script src="js/spectrum.js"></script>
+    <script type="text/javascript">
+
+        $('.collapse-well').on('show.bs.collapse', function () {
+            $(this).closest("#canvasArea")
+                .find(".collapse.in")
+                .not(this)
+                .collapse('toggle')
+        })
+
+        //THESE ARE HARD-CODED FOR A REASON @ARON
+        var imageWidth = 800;
+        var imageHeight = 200;
+        var drawingData = [];
+        var lc = null;
+        var tools;
+        var strokeWidths;
+        var colors;
+        var setCurrentByName;
+        var findByName;
+        var save;
+
+        // the only LC-specific thing we have to do
+        var containerOne = document.getElementsByClassName('literally')[0];
+        var showLC = function () {
+
+            // disable scrolling on touch devices so we can actually draw
+            $(document).bind('touchmove', function (e) {
+                if (e.target === document.documentElement) {
+                    return e.preventDefault();
+                }
+            });
+            lc = LC.init(containerOne, {
+                imageSize: {
+                    width: imageWidth,
+                    height: imageHeight
+                },
+                defaultStrokeWidth: 3,
+                tools: [
+                    LC.tools.Pencil,
+                    LC.tools.Pan
+                ],
+                backgroundColor: '#ECECEC',
+                toolbarPosition: 'top',
+                strokeWidths: [2, 3, 5, 7, 8]
+
+            });
+            lc.setPan(imageWidth / 4, 0);
+            lc.setZoom(2.4);
+            window.demoLC = lc;
+
+            //lc.setWatermarkImage(watermarkImage);
+            save = function (e) {
+                //localStorage.setItem('drawing', JSON.stringify(lc.getSnapshot()));
+            }
+            $('.literally').remove('.lc-undo');
+            lc.on('drawingChange', save);
+            lc.on('pan', save);
+            lc.on('zoom', save);
+        };
+        $(document).ready(function () {
+
+            // disable scrolling on touch devices so we can actually draw
+            $(document).bind('touchmove', function (e) {
+                if (e.target === document.documentElement) {
+                    return e.preventDefault();
+                }
+            });
+            showLC();
+        });
+
+    </script>
+
+    <script src="js/msPaintvr.js"></script>
+    <script src="js/drawingCanvas.js" type="text/javascript"></script>
+
 </body>
+
 </html>
+
+
+    <!--<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
