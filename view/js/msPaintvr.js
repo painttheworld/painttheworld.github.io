@@ -47,8 +47,8 @@ MSPaintVR.prototype.showViewLink = function(){
 }
 MSPaintVR.prototype.showEditLink = function(){
     //TODO: Replace with acutal URL
-    this.editLink.setAttribute('href', 'https://painttheworld.github.io/view/?did=' + this.drawingId);
-    this.editLink.innerHTML = 'https://painttheworld.github.io/view/?did=' + this.drawingId;
+    this.editLink.setAttribute('href', 'https://painttheworld.github.io/?did=' + this.drawingId);
+    this.editLink.innerHTML = 'https://painttheworld.github.io/?did=' + this.drawingId;
 }
 MSPaintVR.prototype.init = function () {
     //Initiate Authentication and Database
