@@ -7,7 +7,6 @@ function MSPaintVR(options) {
     this.drawingId = null;
     if(did){
         this.drawingId = did;
-        console.log('did lads');
     }else{
         
     }
@@ -98,7 +97,6 @@ MSPaintVR.prototype.setDrawing = function(drawingId) {
         this.title = this.painting.child('title');
         this.author = this.painting.child('author');
         this.shapes2D = this.painting.child('shapes2D');
-        console.log(this.uid);
 
     }
     if(this.editLink){
@@ -124,7 +122,7 @@ MSPaintVR.prototype.setDrawing = function(drawingId) {
 }
 MSPaintVR.prototype.login = function () {
     this.auth.signInAnonymously().catch(function (error) {
-        console.log("errOR");
+        console.log(reason);
     });
 }
 /**
