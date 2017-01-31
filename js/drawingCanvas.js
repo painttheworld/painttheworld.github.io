@@ -5,7 +5,9 @@ $(document).ready(function () {
     var drawingIdDiv = document.createElement('div');
     var options = {
         shareDiv: document.getElementById("shareDiv"),
-        vrButton: document.getElementById("viewInVR")
+        vrButton: document.getElementById("viewInVR"),
+        editLink: document.getElementById("editLink"),
+        viewLink: document.getElementById("viewLink")
     }
     options.lCanvas = lc;
     app = new MSPaintVR(options);
