@@ -43,8 +43,5 @@ scene.addEventListener('loaded', function(){
     }else{
 
     }
-    //REPLACE THIS FOR RELEVANT WEBSITE
-    var url = 'some url this is the id ' + dId;
-    document.getElementById('editLink').innerHTML = dId;
 })
 
