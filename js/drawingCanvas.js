@@ -54,7 +54,6 @@ $(document).ready(function () {
             removeShape(lc, shape.id);
         });
         
-        console.log("shape ended");
     });
 
 });
