@@ -92,6 +92,9 @@ MSPaintVR.prototype.setDrawing = function(drawingId) {
         this.painting.child('uid').set(this.uid);
         this.shapes2D = this.painting.child('shapes2D');
     }else{
+        if(drawingId.toString == 'undefined'){
+            drawingId = randId();
+        }
         localStorage.setItem('did', drawingId);
         this.painting = this.db.child('paintings').child(drawingId);
         this.title = this.painting.child('title');
