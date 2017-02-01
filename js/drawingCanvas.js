@@ -48,10 +48,10 @@ $(document).ready(function () {
     
         app.push2DShape(shapeData).then(function () {
             
-            removeShape(lc, shape.id);
+            //removeShape(lc, shape.id);
         }).catch(function(reason){
             console.log(reason);
-            removeShape(lc, shape.id);
+            //removeShape(lc, shape.id);
         });
         
     });
