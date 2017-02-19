@@ -50,7 +50,6 @@
 <script src="js/dist/aframe-master.js"></script>
 <script src="js/dist/THREE.MeshLine.js"></script>
 <script src="js/dist/webvr-ui.min.js"></script>
-<script src="js/customSky.js"></script>
 <script src="js/meshLineDrawerComp.js"></script>
 </head>
 
@@ -58,7 +57,7 @@
     <a-scene id="aframeScene">
 
         <a-entity testing="lineWidth:10; color: #0f0"></a-entity>
-        <a-sky customSky color="#ECECEC"></a-sky>
+        <a-sky color="#ECECEC"></a-sky>
         <a-entity position="0 0 0">
             <a-camera></a-camera>
         </a-entity>
@@ -79,9 +78,6 @@
             or <a href="https://webvr.info" target="_blank">get set up in VR.</a>
         </span>
 
-    </div>
-    <div id="quickPlug">
-        <a href="http://www.virtuleap.com/apps/details/58" id="">Vote For Us in the Virtuleap WebVR Hackathon!</a>
     </div>
 </div>
 <a href="#" id="exit" onclick="enterVR.requestExit()">✕</a>
