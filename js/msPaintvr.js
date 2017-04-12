@@ -212,10 +212,7 @@ function findGetParameter(parameterName) {
 var randId = function () {
     return Math.random().toString(36).substr(2, 12);
 }
-var options = {
-    did: 212,
-    meme: 'fuckOff'
-}
+
 var generate2DPoints = function (shape) {
     var newShape = LC.createShape('LinePath')
     for (var i = 0; i < shape.linePoints2D.length; i++) {
